@@ -66,4 +66,17 @@ router.post("/:cid/product/:pid", async (req, res) => {
   }
 });
 
+router.delete("/:cid/:pid", async (req, res) => {
+  try {
+    const idCart = req.params.cid;
+    const idProduct = req.params.pid;
+
+    await dataCart.deleteProductCart(parseInt(idCart), parseInt(idProduct));
+
+    res.status(200).send({ status: "success", message: "Product deleted" });
+  } catch (error) {
+    res.status(500).send({ status: "error", message: error.message });
+  }
+});
+
 module.exports = router;

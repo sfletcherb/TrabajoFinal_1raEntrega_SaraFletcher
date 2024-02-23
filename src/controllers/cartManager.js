@@ -96,5 +96,26 @@ class CartManager {
       console.log({ status: "error", message: error.message });
     }
   }
+
+  async deleteProductCart(idCart, idProduct) {
+    try {
+      const dataCart = await this.readFile();
+
+      const indexCart = dataCart.findIndex((cart) => cart.id === idCart);
+      const indexProduct = dataCart[indexCart].products.findIndex(
+        (product) => product.id === idProduct
+      );
+
+      if (indexCart !== -1 && indexProduct !== -1) {
+        dataCart[indexCart].products.splice(indexProduct, 1);
+        await fs.writeFile(this.path, JSON.stringify(dataCart, null, 2));
+        console.log("product delected successfully from cart");
+      } else {
+        console.log("couldn't delete producto from cart");
+      }
+    } catch (error) {
+      console.log("error deleting", error.message);
+    }
+  }
 }
 module.exports = CartManager;
