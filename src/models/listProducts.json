@@ -1,110 +1,132 @@
 [
   {
     "id": 1,
-    "title": "producto1",
-    "description": "Prueba1",
+    "title": "ACETAMINOFEN",
+    "description": "Jarabe",
     "price": 100,
-    "thumbnail": "Sin imagen",
+    "thumbnail": [
+      "https://img.freepik.com/vector-gratis/ilustracion-aislada-capsula-medicamento_18591-84252.jpg?size=626&ext=jpg&ga=GA1.1.1954325009.1708959781&semt=sph"
+    ],
     "code": "abc123",
-    "stock": 10
+    "stock": 10,
+    "status": true,
+    "category": "store"
   },
   {
     "id": 2,
-    "title": "producto2",
-    "description": "Prueba2",
+    "title": "BIFONAZOL",
+    "description": "Locion",
     "price": 200,
-    "thumbnail": "Sin imagen",
+    "thumbnail": [
+      "https://img.freepik.com/vector-gratis/ilustracion-aislada-capsula-medicamento_18591-84252.jpg?size=626&ext=jpg&ga=GA1.1.1954325009.1708959781&semt=sph"
+    ],
     "code": "abc456",
-    "stock": 20
+    "stock": 20,
+    "status": true,
+    "category": "store"
   },
   {
     "id": 3,
-    "title": "producto3",
-    "description": "Prueba3",
+    "title": "IBUPROFENO",
+    "description": "Tableta",
     "price": 300,
-    "thumbnail": "Sin imagen",
+    "thumbnail": [
+      "https://img.freepik.com/vector-gratis/ilustracion-aislada-capsula-medicamento_18591-84252.jpg?size=626&ext=jpg&ga=GA1.1.1954325009.1708959781&semt=sph"
+    ],
     "code": "abc789",
-    "stock": 30
+    "stock": 30,
+    "status": true,
+    "category": "store"
   },
   {
     "id": 4,
-    "title": "producto4",
-    "description": "Prueba4",
+    "title": "MINOXIDIL",
+    "description": "Gel",
     "price": 400,
-    "thumbnail": "Sin imagen",
+    "thumbnail": [
+      "https://img.freepik.com/vector-gratis/ilustracion-aislada-capsula-medicamento_18591-84252.jpg?size=626&ext=jpg&ga=GA1.1.1954325009.1708959781&semt=sph"
+    ],
     "code": "abc159",
-    "stock": 40
+    "stock": 40,
+    "status": true,
+    "category": "store"
   },
   {
     "id": 5,
-    "title": "producto5",
-    "description": "Prueba5",
+    "title": "TIMEROSAL",
+    "description": "Solucion Topica",
     "price": 500,
-    "thumbnail": "Sin imagen",
+    "thumbnail": [
+      "https://img.freepik.com/vector-gratis/ilustracion-aislada-capsula-medicamento_18591-84252.jpg?size=626&ext=jpg&ga=GA1.1.1954325009.1708959781&semt=sph"
+    ],
     "code": "abc753",
-    "stock": 50
+    "stock": 50,
+    "status": true,
+    "category": "store"
   },
   {
     "id": 6,
-    "title": "producto6",
-    "description": "Prueba6",
+    "title": "TOLNAFTATO",
+    "description": "Polvo Topico",
     "price": 600,
-    "thumbnail": "Sin imagen",
+    "thumbnail": [
+      "https://img.freepik.com/vector-gratis/ilustracion-aislada-capsula-medicamento_18591-84252.jpg?size=626&ext=jpg&ga=GA1.1.1954325009.1708959781&semt=sph"
+    ],
     "code": "abc452",
-    "stock": 60
+    "stock": 60,
+    "status": true,
+    "category": "store"
   },
   {
     "id": 7,
-    "title": "producto7",
-    "description": "Prueba7",
+    "title": "POLOXAMER",
+    "description": "Solucion Oftalmica",
     "price": 700,
-    "thumbnail": "Sin imagen",
+    "thumbnail": [
+      "https://img.freepik.com/vector-gratis/ilustracion-aislada-capsula-medicamento_18591-84252.jpg?size=626&ext=jpg&ga=GA1.1.1954325009.1708959781&semt=sph"
+    ],
     "code": "abc984",
-    "stock": 70
+    "stock": 70,
+    "status": true,
+    "category": "store"
   },
   {
     "id": 8,
-    "title": "producto8",
-    "description": "Prueba8",
+    "title": "PIROXICAM",
+    "description": "Gel Topico",
     "price": 800,
-    "thumbnail": "Sin imagen",
+    "thumbnail": [
+      "https://img.freepik.com/vector-gratis/ilustracion-aislada-capsula-medicamento_18591-84252.jpg?size=626&ext=jpg&ga=GA1.1.1954325009.1708959781&semt=sph"
+    ],
     "code": "abc349",
-    "stock": 80
+    "stock": 80,
+    "status": true,
+    "category": "store"
   },
   {
     "id": 9,
-    "title": "producto9",
-    "description": "Prueba9",
+    "title": "NAFAZOLINA",
+    "description": "Solucion Oftalmica",
     "price": 900,
-    "thumbnail": "Sin imagen",
+    "thumbnail": [
+      "https://img.freepik.com/vector-gratis/ilustracion-aislada-capsula-medicamento_18591-84252.jpg?size=626&ext=jpg&ga=GA1.1.1954325009.1708959781&semt=sph"
+    ],
     "code": "abc624",
-    "stock": 90
+    "stock": 90,
+    "status": true,
+    "category": "store"
   },
   {
     "id": 10,
-    "title": "producto10",
-    "description": "Prueba10",
+    "title": "NAPROXENO",
+    "description": "Tableta",
     "price": 1000,
-    "thumbnail": "Sin imagen",
+    "thumbnail": [
+      "https://img.freepik.com/vector-gratis/ilustracion-aislada-capsula-medicamento_18591-84252.jpg?size=626&ext=jpg&ga=GA1.1.1954325009.1708959781&semt=sph"
+    ],
     "code": "abc963",
-    "stock": 100
-  },
-  {
-    "id": 11,
-    "title": "newProduct11",
-    "description": "newProductDescription11",
-    "price": 100,
-    "thumbnail": "sin imagen",
-    "code": "prueba11",
-    "stock": 10
-  },
-  {
-    "id": 12,
-    "title": "newProduct12",
-    "description": "newProductDescription12",
-    "price": 100,
-    "thumbnail": "sin imagen",
-    "code": "prueba12",
-    "stock": 10
+    "stock": 100,
+    "status": true,
+    "category": "store"
   }
 ]

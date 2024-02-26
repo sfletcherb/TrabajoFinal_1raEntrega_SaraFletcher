@@ -1,6 +1,5 @@
 const fs = require("fs").promises;
-const { ProductManager } = require("../controllers/productManager");
-const productList = new ProductManager();
+const { productManagerInstance } = require("../controllers/productManager");
 
 class CartManager {
   constructor() {
@@ -71,7 +70,7 @@ class CartManager {
   async addProductToCart(idProduct, idCart, product) {
     try {
       const indexCart = this.products.findIndex((cart) => cart.id === idCart);
-      const indexProduct = productList.products.findIndex(
+      const indexProduct = productManagerInstance.products.findIndex(
         (product) => product.id === idProduct
       );
 

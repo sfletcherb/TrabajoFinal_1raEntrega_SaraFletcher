@@ -1,21 +1,20 @@
 const express = require("express");
 const router = express.Router();
 const {
-  ProductManager,
+  productManagerInstance,
   productData,
 } = require("../controllers/productManager.js");
 
-// Create instance of ProductManager and create list of products:
-const productList = new ProductManager();
+// Create list of products:
 
 productData.forEach((data) => {
-  productList.addProduct(data);
+  productManagerInstance.addProduct(data);
 });
 
 //Routes
 router.get("/", async (req, res) => {
   try {
-    const data = await productList.readFile();
+    const data = await productManagerInstance.readFile();
     let limit = req.query.limit;
 
     if (limit) {
@@ -34,7 +33,9 @@ router.get("/:pid", async (req, res) => {
   try {
     let productId = req.params.pid;
 
-    const findProduct = await productList.getProductById(parseInt(productId));
+    const findProduct = await productManagerInstance.getProductById(
+      parseInt(productId)
+    );
 
     if (findProduct) {
       res.json(findProduct);
@@ -49,8 +50,8 @@ router.get("/:pid", async (req, res) => {
 router.post("/", async (req, res) => {
   try {
     let newProduct = req.body;
-    await productList.addProduct(newProduct);
-    await productList.saveFile();
+    await productManagerInstance.addProduct(newProduct);
+    await productManagerInstance.saveFile();
     res
       .status(200)
       .send({ status: "success", message: "Product added successfully" });
@@ -64,7 +65,9 @@ router.put("/:pid", async (req, res) => {
     const productId = req.params.pid;
     const newChanges = req.body;
 
-    const existProduct = await productList.getProductById(parseInt(productId));
+    const existProduct = await productManagerInstance.getProductById(
+      parseInt(productId)
+    );
     if (!existProduct) {
       return res
         .status(404)
@@ -76,8 +79,8 @@ router.put("/:pid", async (req, res) => {
         .status(400)
         .send({ status: "error", message: "Product ID cannot be changed" });
     }
-    await productList.updateProduct(parseInt(productId), newChanges);
-    await productList.saveFile();
+    await productManagerInstance.updateProduct(parseInt(productId), newChanges);
+    await productManagerInstance.saveFile();
 
     res
       .status(200)
@@ -90,7 +93,7 @@ router.put("/:pid", async (req, res) => {
 router.delete("/:pid", async (req, res) => {
   try {
     const productId = req.params.pid;
-    await productList.deleteProduct(parseInt(productId));
+    await productManagerInstance.deleteProduct(parseInt(productId));
 
     res
       .status(200)

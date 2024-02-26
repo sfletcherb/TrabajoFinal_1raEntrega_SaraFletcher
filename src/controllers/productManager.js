@@ -15,22 +15,24 @@ class ProductManager {
       return JSON.parse(fileContent);
     } catch (error) {
       if (error.code === "ENOENT") {
+        console.log("File not found, creating a new one...");
         await this.saveFile();
+        return [];
       }
-      console.log("Error reading file:", error);
+      console.log("Error reading file method readFile:", error);
       return [];
     }
   }
 
   async initialize() {
     try {
-      const fileContent = await this.readFile();
-      if (fileContent.length > 0) {
-        this.lastId = fileContent.reduce(
+      const fileContentInitialize = await this.readFile();
+      if (fileContentInitialize.length > 0) {
+        this.lastId = fileContentInitialize.reduce(
           (maxId, product) => Math.max(maxId, product.id),
           0
         );
-        this.products = fileContent;
+        this.products = fileContentInitialize;
       }
     } catch (error) {
       console.log("Error initializing ProductManager:", error);
@@ -47,9 +49,19 @@ class ProductManager {
         thumbnail,
         code,
         stock,
-        ...extraProperties
+        status,
+        category,
       } = dataProducts;
-      const fields = [title, description, price, thumbnail, code, stock];
+      const fields = [
+        title,
+        description,
+        price,
+        thumbnail,
+        code,
+        stock,
+        status,
+        category,
+      ];
       const notEmptyFields = fields.every((fieldEmpty) => fieldEmpty);
       if (!notEmptyFields) {
         throw new Error("All fields are required");
@@ -68,7 +80,8 @@ class ProductManager {
         thumbnail,
         code,
         stock,
-        ...extraProperties,
+        status,
+        category,
       };
 
       this.products.push(newProduct);
@@ -88,12 +101,12 @@ class ProductManager {
     }
   }
 
-  async updateProduct(id, products) {
+  async updateProduct(id, changes) {
     try {
       const index = this.products.findIndex((item) => item.id === id);
 
       if (index !== -1) {
-        this.products[index] = { ...this.products[index], ...products };
+        this.products[index] = { ...this.products[index], ...changes, id };
       } else {
         console.log("id not found");
       }
@@ -133,85 +146,127 @@ class ProductManager {
 
 const productData = [
   {
-    title: "producto1",
-    description: "Prueba1",
+    title: "ACETAMINOFEN",
+    description: "Jarabe",
     price: 100,
-    thumbnail: "Sin imagen",
+    thumbnail: [
+      "https://img.freepik.com/vector-gratis/ilustracion-aislada-capsula-medicamento_18591-84252.jpg?size=626&ext=jpg&ga=GA1.1.1954325009.1708959781&semt=sph",
+    ],
     code: "abc123",
     stock: 10,
+    status: true,
+    category: "store",
   },
   {
-    title: "producto2",
-    description: "Prueba2",
+    title: "BIFONAZOL",
+    description: "Locion",
     price: 200,
-    thumbnail: "Sin imagen",
+    thumbnail: [
+      "https://img.freepik.com/vector-gratis/ilustracion-aislada-capsula-medicamento_18591-84252.jpg?size=626&ext=jpg&ga=GA1.1.1954325009.1708959781&semt=sph",
+    ],
     code: "abc456",
     stock: 20,
+    status: true,
+    category: "store",
   },
   {
-    title: "producto3",
-    description: "Prueba3",
+    title: "IBUPROFENO",
+    description: "Tableta",
     price: 300,
-    thumbnail: "Sin imagen",
+    thumbnail: [
+      "https://img.freepik.com/vector-gratis/ilustracion-aislada-capsula-medicamento_18591-84252.jpg?size=626&ext=jpg&ga=GA1.1.1954325009.1708959781&semt=sph",
+    ],
     code: "abc789",
     stock: 30,
+    status: true,
+    category: "store",
   },
   {
-    title: "producto4",
-    description: "Prueba4",
+    title: "MINOXIDIL",
+    description: "Gel",
     price: 400,
-    thumbnail: "Sin imagen",
+    thumbnail: [
+      "https://img.freepik.com/vector-gratis/ilustracion-aislada-capsula-medicamento_18591-84252.jpg?size=626&ext=jpg&ga=GA1.1.1954325009.1708959781&semt=sph",
+    ],
     code: "abc159",
     stock: 40,
+    status: true,
+    category: "store",
   },
   {
-    title: "producto5",
-    description: "Prueba5",
+    title: "TIMEROSAL",
+    description: "Solucion Topica",
     price: 500,
-    thumbnail: "Sin imagen",
+    thumbnail: [
+      "https://img.freepik.com/vector-gratis/ilustracion-aislada-capsula-medicamento_18591-84252.jpg?size=626&ext=jpg&ga=GA1.1.1954325009.1708959781&semt=sph",
+    ],
     code: "abc753",
     stock: 50,
+    status: true,
+    category: "store",
   },
   {
-    title: "producto6",
-    description: "Prueba6",
+    title: "TOLNAFTATO",
+    description: "Polvo Topico",
     price: 600,
-    thumbnail: "Sin imagen",
+    thumbnail: [
+      "https://img.freepik.com/vector-gratis/ilustracion-aislada-capsula-medicamento_18591-84252.jpg?size=626&ext=jpg&ga=GA1.1.1954325009.1708959781&semt=sph",
+    ],
     code: "abc452",
     stock: 60,
+    status: true,
+    category: "store",
   },
   {
-    title: "producto7",
-    description: "Prueba7",
+    title: "POLOXAMER",
+    description: "Solucion Oftalmica",
     price: 700,
-    thumbnail: "Sin imagen",
+    thumbnail: [
+      "https://img.freepik.com/vector-gratis/ilustracion-aislada-capsula-medicamento_18591-84252.jpg?size=626&ext=jpg&ga=GA1.1.1954325009.1708959781&semt=sph",
+    ],
     code: "abc984",
     stock: 70,
+    status: true,
+    category: "store",
   },
   {
-    title: "producto8",
-    description: "Prueba8",
+    title: "PIROXICAM",
+    description: "Gel Topico",
     price: 800,
-    thumbnail: "Sin imagen",
+    thumbnail: [
+      "https://img.freepik.com/vector-gratis/ilustracion-aislada-capsula-medicamento_18591-84252.jpg?size=626&ext=jpg&ga=GA1.1.1954325009.1708959781&semt=sph",
+    ],
     code: "abc349",
     stock: 80,
+    status: true,
+    category: "store",
   },
   {
-    title: "producto9",
-    description: "Prueba9",
+    title: "NAFAZOLINA",
+    description: "Solucion Oftalmica",
     price: 900,
-    thumbnail: "Sin imagen",
+    thumbnail: [
+      "https://img.freepik.com/vector-gratis/ilustracion-aislada-capsula-medicamento_18591-84252.jpg?size=626&ext=jpg&ga=GA1.1.1954325009.1708959781&semt=sph",
+    ],
     code: "abc624",
     stock: 90,
+    status: true,
+    category: "store",
   },
   {
-    title: "producto10",
-    description: "Prueba10",
+    title: "NAPROXENO",
+    description: "Tableta",
     price: 1000,
-    thumbnail: "Sin imagen",
+    thumbnail: [
+      "https://img.freepik.com/vector-gratis/ilustracion-aislada-capsula-medicamento_18591-84252.jpg?size=626&ext=jpg&ga=GA1.1.1954325009.1708959781&semt=sph",
+    ],
     code: "abc963",
     stock: 100,
+    status: true,
+    category: "store",
   },
 ];
 
-module.exports = { ProductManager, productData };
+const productManagerInstance = new ProductManager();
+
+module.exports = { productManagerInstance, productData };
