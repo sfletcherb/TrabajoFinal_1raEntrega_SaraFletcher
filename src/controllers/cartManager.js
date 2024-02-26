@@ -38,14 +38,15 @@ class CartManager {
     }
   }
 
-  async createCart(newCart) {
+  async createCart() {
     const cart = {
       id: ++this.lastId,
-      products: newCart,
+      products: [],
     };
 
     this.products.push(cart);
-    console.log(this.products);
+    await this.saveFile();
+    return cart;
   }
 
   async saveFile() {
@@ -61,13 +62,17 @@ class CartManager {
     try {
       const content = await this.readFile();
       const findId = content.find((item) => item.id === id);
+
+      if (!findId) {
+        throw new Error("could not find cart with id " + id);
+      }
       return findId;
     } catch (error) {
       console.log("Does not exits id in cart", error);
     }
   }
 
-  async addProductToCart(idProduct, idCart, product) {
+  async addProductToCart(idProduct, idCart, quantity) {
     try {
       const indexCart = this.products.findIndex((cart) => cart.id === idCart);
       const indexProduct = productManagerInstance.products.findIndex(
@@ -80,16 +85,18 @@ class CartManager {
         );
 
         if (findProductId !== -1) {
-          this.products[indexCart].products[findProductId].quantity++;
+          this.products[indexCart].products[findProductId].quantity += quantity;
         } else {
           this.products[indexCart].products.push({
             id: idProduct,
-            quantity: 1,
+            quantity,
           });
           console.log("product added to cart");
         }
+
+        return this.products[indexCart].products;
       } else {
-        console.log(`cart: ${indexCart} or product: ${indexProduct} not found`);
+        console.log(`Id ${idProduct} not found for product`);
       }
     } catch (error) {
       console.log({ status: "error", message: error.message });
@@ -109,6 +116,7 @@ class CartManager {
         dataCart[indexCart].products.splice(indexProduct, 1);
         await fs.writeFile(this.path, JSON.stringify(dataCart, null, 2));
         console.log("product delected successfully from cart");
+        return dataCart[indexCart].products;
       } else {
         console.log("couldn't delete producto from cart");
       }

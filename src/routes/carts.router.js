@@ -22,7 +22,7 @@ router.get("/:cid", async (req, res) => {
     const dataById = await dataCart.getCartById(parseInt(idCart));
 
     if (dataById) {
-      res.json(dataById);
+      res.json(dataById.products);
     } else {
       res.status(404).send({ status: "error", message: "Id not found" });
     }
@@ -33,12 +33,9 @@ router.get("/:cid", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
-    let data = req.body;
-    await dataCart.createCart(data);
+    const newCart = await dataCart.createCart();
     await dataCart.saveFile();
-    res
-      .status(200)
-      .send({ status: "success", message: "Cart created successfully" });
+    res.status(200).json(newCart);
   } catch (error) {
     res.status(500).send({ status: "error", message: error.message });
   }
@@ -48,19 +45,16 @@ router.post("/:cid/product/:pid", async (req, res) => {
   try {
     const idCart = req.params.cid;
     const idProduct = req.params.pid;
-    const product = req.params.product;
+    const quantity = req.body.quantity || 1;
 
-    await dataCart.addProductToCart(
+    const upDateCart = await dataCart.addProductToCart(
       parseInt(idProduct),
       parseInt(idCart),
-      product
+      quantity
     );
     await dataCart.saveFile();
 
-    res.status(200).send({
-      status: "success",
-      message: "Product added to cart successfully",
-    });
+    res.status(200).json(upDateCart);
   } catch (error) {
     res.status(500).send({ status: "error", message: error.message });
   }
@@ -71,9 +65,12 @@ router.delete("/:cid/:pid", async (req, res) => {
     const idCart = req.params.cid;
     const idProduct = req.params.pid;
 
-    await dataCart.deleteProductCart(parseInt(idCart), parseInt(idProduct));
+    const deleteProducts = await dataCart.deleteProductCart(
+      parseInt(idCart),
+      parseInt(idProduct)
+    );
 
-    res.status(200).send({ status: "success", message: "Product deleted" });
+    res.status(200).json(deleteProducts);
   } catch (error) {
     res.status(500).send({ status: "error", message: error.message });
   }
