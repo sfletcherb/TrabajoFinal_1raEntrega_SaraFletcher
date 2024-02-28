@@ -52,16 +52,7 @@ class ProductManager {
         status,
         category,
       } = dataProducts;
-      const fields = [
-        title,
-        description,
-        price,
-        thumbnail,
-        code,
-        stock,
-        status,
-        category,
-      ];
+      const fields = [title, description, price, code, stock, status, category];
       const notEmptyFields = fields.every((fieldEmpty) => fieldEmpty);
       if (!notEmptyFields) {
         throw new Error("All fields are required");
@@ -77,7 +68,7 @@ class ProductManager {
         title,
         description,
         price,
-        thumbnail,
+        thumbnail: thumbnail || [],
         code,
         stock,
         status,

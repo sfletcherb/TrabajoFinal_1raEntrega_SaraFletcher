@@ -1,27 +1,27 @@
 [
   {
     "id": 1,
-    "title": "ACETAMINOFEN",
-    "description": "Jarabe",
-    "price": 100,
+    "title": "ROBITUSIN",
+    "description": "Tableta",
+    "price": 50000,
     "thumbnail": [
       "https://img.freepik.com/vector-gratis/ilustracion-aislada-capsula-medicamento_18591-84252.jpg?size=626&ext=jpg&ga=GA1.1.1954325009.1708959781&semt=sph"
     ],
-    "code": "abc123",
-    "stock": 10,
+    "code": "nlH352",
+    "stock": 200,
     "status": true,
     "category": "store"
   },
   {
     "id": 2,
-    "title": "BIFONAZOL",
-    "description": "Locion",
-    "price": 200,
+    "title": "MERISUTS",
+    "description": "Tableta",
+    "price": 50000,
     "thumbnail": [
       "https://img.freepik.com/vector-gratis/ilustracion-aislada-capsula-medicamento_18591-84252.jpg?size=626&ext=jpg&ga=GA1.1.1954325009.1708959781&semt=sph"
     ],
-    "code": "abc456",
-    "stock": 20,
+    "code": "nlH152",
+    "stock": 200,
     "status": true,
     "category": "store"
   },
@@ -131,13 +131,11 @@
   },
   {
     "id": 11,
-    "title": "ROBITUSIN",
+    "title": "MERATUSIL",
     "description": "Tableta",
     "price": 800,
-    "thumbnail": [
-      "https://img.freepik.com/vector-gratis/ilustracion-aislada-capsula-medicamento_18591-84252.jpg?size=626&ext=jpg&ga=GA1.1.1954325009.1708959781&semt=sph"
-    ],
-    "code": "nlm342",
+    "thumbnail": [],
+    "code": "nlm312",
     "stock": 10,
     "status": true,
     "category": "store"
